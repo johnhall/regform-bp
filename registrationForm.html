@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TRACS Project Form</title>
+
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="registrationForm.mod.js"></script>
+  <script src="registrationForm.ctrl.js"></script>
+  <script src="registrationForm.svc.js"></script>
+
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+    .steps-container {
+      margin-top: 20px;
+    }
+
+    label {
+      font-weight: normal;
+    }
+  </style>
+</head>
+<body ng-app="registrationForm"
+      ng-controller="RegistrationFormController as main">
+
+
+<div class="container">
+
+  <!--Row with two columns divided in 1:2 ratio-->
+  <div class="row">
+    <div class="col-sm-4 steps-container">
+      <div class="list-group">
+        <a href="#"
+           ng-click="main.setStep('usertype')"
+           ng-class="{ 'list-group-item active' : main.step=='usertype', 'list-group-item' : main.step!='usertype' }">
+          Select User Type <span
+                ng-class="{ 'label label-success pull-right' : main.isUserTypeFormValid, 'label label-danger pull-right' : !main.isUserTypeFormValid && main.isUserTypeFormDirty, 'label label-default pull-right' : !main.isUserTypeFormDirty }">
+                                            1</span>
+        </a>
+        <a href="#"
+           ng-click="main.setStep('profile')"
+           ng-class="{ 'list-group-item active' : main.step=='profile', 'list-group-item' : main.step!='profile' }">
+          Enter Profile Information <span
+                ng-class="{ 'label label-success pull-right' : main.isProfileFormValid, 'label label-danger pull-right' : !main.isProfileFormValid && main.isProfileFormDirty, 'label label-default pull-right' : !main.isProfileFormDirty  }">
+                                            2</span>
+        </a>
+        <a href="#"
+           ng-click="main.setStep('roles')"
+           ng-class="{ 'list-group-item active' : main.step=='roles', 'list-group-item' : main.step!='roles' }">
+          Select Responsibilities <span
+                ng-class="{ 'label label-success pull-right' : main.isRoleFormValid(), 'label label-danger pull-right' : !main.isRoleFormValid() && main.isRoleFormDirty , 'label label-default pull-right' : !main.isRoleFormDirty  }">
+                                            3</span>
+        </a>
+      </div>
+
+      <!--{{main.getUserType()}}-->
+
+      <!--userTypeForm: {{main.userTypeForm}}-->
+      <!--<div>type valid: {{main.isUserTypeFormValid}}</div>-->
+      <!--<div>type dirty: {{main.isUserTypeFormDirty}}</div>-->
+
+      <!--<div>profile valid: {{main.isProfileFormValid}}</div>-->
+      <!--<div>profile dirty: {{main.isProfileFormDirty}}</div>-->
+
+      <div class="alert alert-danger" ng-show="main.showUserTypeWarn">
+        You must select a user type before continuing.
+      </div>
+
+      <div class="alert alert-danger" ng-show="main.showProfileWarn">
+        You must complete your user profile for continuing.
+      </div>
+
+    </div>
+
+    <div class="col-sm-8" class="w-content">
+
+      <div ng-switch on="main.step"
+           ng-init="main.step='usertype'">
+
+
+        <div ng-switch-when="usertype">
+          <h2>Select User Type</h2>
+
+          <form name="main.userTypeForm" novalidate>
+
+            <div class="well well-sm form-group">
+              <label for="userTypeF" class="control-label">User Type</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <select id="userTypeF" name="userTypeF" class="form-control"
+                      ng-model="main.profile.userType" required>
+                <option value="">Select User Type</option>
+                <option value="fedUser">Federal User</option>
+                <option value="stateUser">State User</option>
+                <option value="tribalUser">Tribal User</option>
+                <option value="otherUser">Other</option>
+              </select>
+                            <span ng-show="main.userTypeForm.userTypeF.$dirty && userTypeForm.userTypeF.$invalid">
+                                <span ng-show="main.userTypeForm.userTypeF.$error.required">User Type is requireds</span>
+                            </span>
+            </div>
+          </form>
+          <div>
+            <button type="button" id="goToProfileButton" class="btn btn-primary"
+                    ng-disabled="main.userTypeForm.userTypeF.$invalid"
+                    ng-click="main.setStep('profile')">Next Step
+            </button>
+          </div>
+        </div>
+
+        <div ng-switch-when="profile">
+          <h2>{{main.getUserType()}}</h2>
+
+          <form name="main.regform" novalidate>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.firstNameF.$dirty && main.regform.firstNameF.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.firstNameF.$invalid }">
+              <label for="firstNameF" class="control-label">First Name</label>
+                            < class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span>
+              <input name="firstNameF" id="firstNameF" type="text" placeholder="First Name"
+                     class="form-control"
+                     ng-model="main.profile.firstName" required/>
+                            <span ng-show="main.regform.firstNameF.$dirty && main.regform.firstNameF.$invalid">
+                                <span class="help-block" ng-show="main.regform.firstNameF.$error.required">First Name is required</span>
+                            </span>
+            </div>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.lastNameF.$dirty && main.regform.lastNameF.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.lastNameF.$invalid }">
+              <label for="lastNameF" class="control-label">Last Name</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <input name="lastNameF" id="lastNameF" type="text" class="form-control" placeholder="Last Name"
+                     ng-model="main.profile.lastName" required/>
+                            <span ng-show="main.regform.lastNameF.$dirty && main.regform.lastNameF.$invalid">
+                                <span class="help-block" ng-show="main.regform.lastNameF.$error.required">Last Name is required</span>
+                            </span>
+            </div>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.phoneF.$dirty && main.regform.phoneF.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.phoneF.$invalid }">
+              <label for="phoneF" class="control-label">Contact Phone</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <input id="phoneF" name="phoneF" type="text" class="form-control" placeholder="Contact Phone"
+                     aria-describedby="phoneHelpBlock"
+                     ng-model="main.profile.phone"
+                     ui-mask="(999) 999-9999"
+                     required/>
+              <span id="phoneHelpBlock" class="help-block">Please provide a contact number for you at your organization. Do not provide a personal phone number.</span>
+                            <span ng-show="main.regform.phoneF.$dirty && main.regform.phoneF.$invalid">
+                                <span class="help-block" ng-show="main.regform.phoneF.$error.required">Contact Phone is required</span>
+                            </span>
+            </div>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.email1F.$dirty && main.regform.email1F.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.email1F.$invalid }">
+              <label for="email1F" class="control-label">Email Address</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <input id="email1F" name="email1F" type="email" class="form-control" placeholder="Email"
+                     aria-describedby="emailHelpBlock"
+                     ng-model="main.profile.email1" required/>
+              <span id="emailHelpBlock" class="help-block">Your email address will be your username.</span>
+                            <span class="help-block"
+                                  ng-show="main.regform.email1F.$dirty && main.regform.email1F.$invalid">
+                                <span ng-show="main.regform.email1F.$error.required">Email Address is required</span>
+                            </span>
+                            <span class="help-block"
+                                  ng-show="main.regform.email1F.$dirty && main.regform.email1F.$invalid">
+                                <span ng-show="main.regform.email1F.$error.email">You must enter a valid email address.</span>
+                            </span>
+            </div>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.email2F.$dirty && main.regform.email2F.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.email2F.$invalid }">
+              <label for="email2F" class="control-label">Confirm Email Address</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <input id="email2F" name="email2F" type="email" class="form-control" placeholder="Email"
+                     aria-describedby="emailHelpBlock"
+                     ng-model="main.profile.email2"
+                     required
+                     email-repeat="email1F"/>
+                            <span class="help-block"
+                                  ng-show="main.regform.email2F.$dirty && main.regform.email2F.$invalid">
+                                <span ng-show="main.regform.email2F.$error.required">Email Address Confirmation is required</span>
+                            </span>
+                            <span class="help-block"
+                                  ng-show="main.regform.email2F.$dirty && main.regform.email2F.$invalid">
+                                <span ng-show="main.regform.email2F.$error.email">You must enter a valid email address.</span>
+                            </span>
+                            <span class="help-block"
+                                  ng-show="main.regform.email2F.$dirty && main.regform.email2F.$invalid">
+                                <span ng-show="main.regform.email2F.$error.repeat">Email Confirmation must match.</span>
+                            </span>
+            </div>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.stateF.$dirty && main.regform.stateF.$invalid), 'well well-sm form-group' : !main.regform.stateF.$dirty || !main.regform.stateF.$invalid }"
+                 ng-show="main.profile.userType=='stateUser'">
+              <label for="stateF" class="control-label">State</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <select id="stateF" class="form-control"
+                      data-ng-model="main.profile.state"
+                      ng-required="main.profile.userType=='stateUser'"
+                      data-ng-options="state.name for state in main.states">
+                <option value="">Select State</option>
+              </select>
+                            <span ng-show="main.regform.stateF.$invalid">
+                                <span class="help-block" ng-show="main.regform.stateF.$error.required">Region is required</span>
+                            </span>
+            </div>
+
+            <div class="well well-sm form-group"
+                 ng-show="main.profile.userType=='stateUser'">
+              <label for="orgF" class="control-label">Organization</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <input id="orgF" name="orgF" type="text" placeholder="Search for organization"
+                     ng-model="main.profile.organization"
+                     typeahead="org.name for org in main.organizations | filter:$viewValue | limitTo:5"
+                     class="form-control"
+                     ng-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
+                     ng-disabled="main.profile.isCustomOrg">
+                            <span ng-show="main.regform.stateF.$invalid">
+                                <span class="help-block" ng-show="main.regform.orgF.$error.required">Organization is required</span>
+                            </span>
+            </div>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.customOrgF.$dirty && main.regform.customOrgF.$invalid), 'well well-sm form-group' : !main.regform.customOrgF.$dirty || !main.regform.customOrgF.$invalid }"
+                 ng-show="main.profile.userType=='stateUser'">
+              <button type="button" class="btn btn-link"
+                      ng-click="main.toggleCustomOrg()">My Organization is not listed above.
+              </button>
+              <input name="customOrgF" id="customOrgF" type="text" placeholder="Custom Organization"
+                     class="form-control"
+                     ng-model="main.profile.customOrg"
+                     ng-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
+                     ng-show="main.profile.isCustomOrg"/>
+                            <span ng-show="main.regform.customOrgF.$dirty && main.regform.customOrgF.$invalid">
+                                <span class="help-block" ng-show="main.regform.customOrgF.$error.required">Organiztion is required</span>
+                            </span>
+            </div>
+
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.regionF.$dirty && main.regform.regionF.$invalid), 'well well-sm form-group' : !main.regform.regionF.$dirty || !main.regform.regionF.$invalid }"
+                 ng-show="main.profile.userType=='fedUser'">
+              <label for="regionF" class="control-label">Region</label>
+                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
+                                                           tooltip="This is my cool clickable tooltip"
+                                                           tooltip-placement="left"
+                                                           tooltip-trigger="click"></span></span>
+              <select id="regionF" class="form-control"
+                      data-ng-model="main.profile.region"
+                      ng-required="main.profile.userType=='fedUser'"
+                      data-ng-options="fwsRegion.name for fwsRegion in main.fwsRegions">
+                <option value="">Select FWS Region</option>
+              </select>
+                            <span ng-show="main.regform.regionF.$invalid">
+                                <span class="help-block" ng-show="main.regform.regionF.$error.required">Region is required</span>
+                            </span>
+            </div>
+          </form>
+
+          <div>
+            <button type="button" class="btn btn-warning"
+                    ng-click="main.setStep('usertype')">Go Back
+            </button>
+            <button type="button" id="goToResponsibilitiesButton" class="btn btn-primary"
+                    ng-disabled="main.regform.$invalid"
+                    ng-click="main.setStep('roles')">Next Step
+            </button>
+          </div>
+
+          <!--{{main.regform.$error}}-->
+        </div>
+
+        <div ng-switch-when="roles">
+
+          <h2>Select Your Responsibilities</h2>
+
+          <form name="main.roleform" novalidate>
+
+            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.roleform.$dirty && main.roleform.lastNameF.$invalid), 'well well-sm form-group' : !main.roleform.pass2F.$dirty || !main.roleform.lastNameF.$invalid }">
+              <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="checkbox"
+                                       ng-model="main.profile.dataentry">
+                              </span>
+                <label>Create and manage project data</label>
+              </div>
+
+              <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="checkbox"
+                                       ng-model="main.profile.fedreview">
+                              </span>
+                <label>Review project proposals and performance reports</label>
+              </div>
+
+              <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="checkbox"
+                                       ng-model="main.profile.useradmin">
+                              </span>
+                <label>Create and manage user profiles and approve system access</label>
+              </div>
+
+              <div class="input-group">
+                              <span class="input-group-addon">
+                                <input type="checkbox"
+                                       ng-model="main.profile.fbmsReports">
+                              </span>
+                <label>View financial reports from FBMS</label>
+              </div>
+            </div>
+          </form>
+          <div>
+            <button type="button" class="btn btn-warning"
+                    ng-click="main.setStep('profile')">Go Back
+            </button>
+            <button type="button" class="btn btn-primary"
+                    ng-disabled="!main.isUserTypeFormValid || !main.isProfileFormValid || !main.isRoleFormValid()"
+                    ng-click="main.finish()" )>Finish
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr/>
+  {{main.profile}}
+
+</div>
+</body>
+
+
+</html>
