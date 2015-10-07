@@ -73,14 +73,14 @@ registrationFormMod.
 //        if ( 'roles' == vm.step ) {
 //            vm.isRoleFormDirty = true;
 //        }
-    }
+    };
 
 
     $scope.$watch('main.userTypeForm.$valid', function(blah) {
         if ( typeof blah != 'undefined' ) {
             vm.isUserTypeFormValid = blah;
         }
-     });
+    });
     $scope.$watch('main.userTypeForm.$dirty', function(blah) {
          if ( typeof blah != 'undefined' ) {
              //once sullied, you can never be clean again
@@ -109,7 +109,7 @@ registrationFormMod.
                || vm.profile.fedreview == true
                || vm.profile.useradmin == true
                || vm.profile.fbmsReports == true;
-    }
+    };
 //    $scope.$watch('main.roleform.$dirty', function(blah) {
 //         if ( typeof blah != 'undefined' ) {
 //             vm.isRoleFormDirty = blah;
@@ -117,7 +117,7 @@ registrationFormMod.
 //    });
 
     vm.toggleCustomOrg = function() {
-            vm.profile.isCustomOrg = true;
+            vm.profile.isCustomOrg = !vm.profile.isCustomOrg;
             vm.profile.organization = null;
         };
 

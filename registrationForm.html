@@ -185,13 +185,13 @@
                       tf-help="Select Your State"
                       tf-form="main.regform"
                       tf-required="true"
-                      ng-show="main.profile.userType=='stateUser'">
-                  <select id="stateF" class="form-control"
+                 ng-show="main.profile.userType=='stateUser'">
+              <select id="stateF" class="form-control"
                           ng-model="main.profile.state"
-                          ng-required="main.profile.userType=='stateUser'"
+                      ng-required="main.profile.userType=='stateUser'"
                           ng-options="state.name for state in main.states">
-                      <option value="">Select State</option>
-                  </select>
+                <option value="">Select State</option>
+              </select>
               </tx-form-field>
 
               <tx-form-field
@@ -200,13 +200,13 @@
                       tf-help="Search for your organization"
                       tf-form="main.regform"
                       tf-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
-                      ng-show="main.profile.userType=='stateUser'">
-                  <input id="orgF" name="orgF" type="text" placeholder="Search for organization"
-                         ng-model="main.profile.organization"
-                         typeahead="org.name for org in main.organizations | filter:$viewValue | limitTo:5"
-                         class="form-control"
-                         ng-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
-                         ng-disabled="main.profile.isCustomOrg">
+                 ng-show="main.profile.userType=='stateUser'">
+              <input id="orgF" name="orgF" type="text" placeholder="Search for organization"
+                     ng-model="main.profile.organization"
+                     typeahead="org.name for org in main.organizations | filter:$viewValue | limitTo:5"
+                     class="form-control"
+                     ng-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
+                     ng-disabled="main.profile.isCustomOrg">
               </tx-form-field>
 
               <tx-form-field
@@ -216,9 +216,11 @@
                       tf-form="main.regform"
                       tf-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
                       ng-show="main.profile.userType=='stateUser'">
-                  <button type="button" class="btn btn-link"
+                  <button type="button" class="btn btn-link" ng-hide="main.profile.isCustomOrg"
                         ng-click="main.toggleCustomOrg()">My Organization is not listed above.
                   </button>
+                            <span class="pull-right" ng-show="main.profile.isCustomOrg"><span class="glyphicon glyphicon-search"></span><button type="button" class="btn btn-link" ng-click="main.toggleCustomOrg()">
+                                Search organizations again</button></span>
                   <input name="customOrgF" id="customOrgF" type="text" placeholder="Custom Organization"
                          class="form-control"
                          ng-model="main.profile.customOrg"
@@ -261,38 +263,19 @@
 
           <form name="main.roleform" novalidate>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.roleform.$dirty && main.roleform.lastNameF.$invalid), 'well well-sm form-group' : !main.roleform.pass2F.$dirty || !main.roleform.lastNameF.$invalid }">
-              <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox"
-                                       ng-model="main.profile.dataentry">
-                              </span>
-                <label>Create and manage project data</label>
-              </div>
-
-              <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox"
-                                       ng-model="main.profile.fedreview">
-                              </span>
-                <label>Review project proposals and performance reports</label>
-              </div>
-
-              <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox"
-                                       ng-model="main.profile.useradmin">
-                              </span>
-                <label>Create and manage user profiles and approve system access</label>
-              </div>
-
-              <div class="input-group">
-                              <span class="input-group-addon">
-                                <input type="checkbox"
-                                       ng-model="main.profile.fbmsReports">
-                              </span>
-                <label>View financial reports from FBMS</label>
-              </div>
+              <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.roleform.$dirty && main.roleform.lastNameF.$invalid), 'well well-sm form-group' : !main.roleform.pass2F.$dirty || !main.roleform.lastNameF.$invalid }">
+                  <div class="checkbox">
+                      <label><input type="checkbox" ng-model="main.profile.dataentry">Create and manage project data</label>
+                  </div>
+                  <div class="checkbox">
+                      <label><input type="checkbox" ng-model="main.profile.fedreview">Review project proposals and performance reports</label>
+                  </div>
+                  <div class="checkbox">
+                      <label><input type="checkbox" ng-model="main.profile.useradmin">Create and manage user profiles and approve system access</label>
+                  </div>
+                  <div class="checkbox">
+                      <label><input type="checkbox"ng-model="main.profile.fbmsReports">View financial reports from FBMS</label>
+                  </div>
             </div>
           </form>
           <div>
