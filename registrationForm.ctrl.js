@@ -1,5 +1,5 @@
 //set a new module
-var registrationFormMod = angular.module('registrationForm', ['ngAnimate', 'ui.bootstrap']);
+var registrationFormMod = angular.module('registrationForm', ['ngAnimate', 'ui.bootstrap', 'gov.doi.tracs.forms']);
 
 registrationFormMod.
     controller("RegistrationFormController", [ '$scope', 'registrationSvc', function($scope,registrationSvc){

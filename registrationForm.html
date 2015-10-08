@@ -10,6 +10,7 @@
   <script src="registrationForm.mod.js"></script>
   <script src="registrationForm.ctrl.js"></script>
   <script src="registrationForm.svc.js"></script>
+  <script src="gov.doi.tracs.forms.js"></script>
 
   <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <style type="text/css">
@@ -117,164 +118,128 @@
 
           <form name="main.regform" novalidate>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.firstNameF.$dirty && main.regform.firstNameF.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.firstNameF.$invalid }">
-              <label for="firstNameF" class="control-label">First Name</label>
-                            < class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span>
-              <input name="firstNameF" id="firstNameF" type="text" placeholder="First Name"
-                     class="form-control"
-                     ng-model="main.profile.firstName" required/>
-                            <span ng-show="main.regform.firstNameF.$dirty && main.regform.firstNameF.$invalid">
-                                <span class="help-block" ng-show="main.regform.firstNameF.$error.required">First Name is required</span>
-                            </span>
-            </div>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.lastNameF.$dirty && main.regform.lastNameF.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.lastNameF.$invalid }">
-              <label for="lastNameF" class="control-label">Last Name</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <input name="lastNameF" id="lastNameF" type="text" class="form-control" placeholder="Last Name"
-                     ng-model="main.profile.lastName" required/>
-                            <span ng-show="main.regform.lastNameF.$dirty && main.regform.lastNameF.$invalid">
-                                <span class="help-block" ng-show="main.regform.lastNameF.$error.required">Last Name is required</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="firstNameF"
+                      tf-label="First Name"
+                      tf-help="This is your first name, not your last name."
+                      tf-form="main.regform"
+                      tf-required="true">
+                  <tx-text-input
+                          tf-type="text"
+                          tf-placeholder="type your first name here"
+                          tf-model="main.profile.firstName"/>
+              </tx-form-field>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.phoneF.$dirty && main.regform.phoneF.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.phoneF.$invalid }">
-              <label for="phoneF" class="control-label">Contact Phone</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <input id="phoneF" name="phoneF" type="text" class="form-control" placeholder="Contact Phone"
-                     aria-describedby="phoneHelpBlock"
-                     ng-model="main.profile.phone"
-                     ui-mask="(999) 999-9999"
-                     required/>
-              <span id="phoneHelpBlock" class="help-block">Please provide a contact number for you at your organization. Do not provide a personal phone number.</span>
-                            <span ng-show="main.regform.phoneF.$dirty && main.regform.phoneF.$invalid">
-                                <span class="help-block" ng-show="main.regform.phoneF.$error.required">Contact Phone is required</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="lastNameF"
+                      tf-label="Last Name"
+                      tf-help="This is your last name, not your first name."
+                      tf-form="main.regform"
+                      tf-required="true">
+                  <tx-text-input
+                          tf-type="text"
+                          tf-placeholder="type your last name here"
+                          tf-model="main.profile.lastName"/>
+              </tx-form-field>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.email1F.$dirty && main.regform.email1F.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.email1F.$invalid }">
-              <label for="email1F" class="control-label">Email Address</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <input id="email1F" name="email1F" type="email" class="form-control" placeholder="Email"
-                     aria-describedby="emailHelpBlock"
-                     ng-model="main.profile.email1" required/>
-              <span id="emailHelpBlock" class="help-block">Your email address will be your username.</span>
-                            <span class="help-block"
-                                  ng-show="main.regform.email1F.$dirty && main.regform.email1F.$invalid">
-                                <span ng-show="main.regform.email1F.$error.required">Email Address is required</span>
-                            </span>
-                            <span class="help-block"
-                                  ng-show="main.regform.email1F.$dirty && main.regform.email1F.$invalid">
-                                <span ng-show="main.regform.email1F.$error.email">You must enter a valid email address.</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="phoneF"
+                      tf-label="Contact Phone"
+                      tf-help="This is your phone number."
+                      tf-form="main.regform"
+                      tf-required="true">
+                  <tx-text-input
+                          tf-type="text"
+                          tf-placeholder="type your phone number here"
+                          tf-model="main.profile.phone"/>
+              </tx-form-field>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.email2F.$dirty && main.regform.email2F.$invalid), 'well well-sm form-group' : !main.regform.pass2F.$dirty || !main.regform.email2F.$invalid }">
-              <label for="email2F" class="control-label">Confirm Email Address</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <input id="email2F" name="email2F" type="email" class="form-control" placeholder="Email"
-                     aria-describedby="emailHelpBlock"
-                     ng-model="main.profile.email2"
-                     required
-                     email-repeat="email1F"/>
-                            <span class="help-block"
-                                  ng-show="main.regform.email2F.$dirty && main.regform.email2F.$invalid">
-                                <span ng-show="main.regform.email2F.$error.required">Email Address Confirmation is required</span>
-                            </span>
-                            <span class="help-block"
-                                  ng-show="main.regform.email2F.$dirty && main.regform.email2F.$invalid">
-                                <span ng-show="main.regform.email2F.$error.email">You must enter a valid email address.</span>
-                            </span>
-                            <span class="help-block"
-                                  ng-show="main.regform.email2F.$dirty && main.regform.email2F.$invalid">
-                                <span ng-show="main.regform.email2F.$error.repeat">Email Confirmation must match.</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="email1"
+                      tf-label="Email Address"
+                      tf-help="This is your email address."
+                      tf-form="main.regform"
+                      tf-required="true">
+                  <tx-text-input
+                          tf-type="email"
+                          tf-placeholder="type your email address here"
+                          tf-model="main.profile.email1"/>
+              </tx-form-field>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.stateF.$dirty && main.regform.stateF.$invalid), 'well well-sm form-group' : !main.regform.stateF.$dirty || !main.regform.stateF.$invalid }"
-                 ng-show="main.profile.userType=='stateUser'">
-              <label for="stateF" class="control-label">State</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <select id="stateF" class="form-control"
-                      data-ng-model="main.profile.state"
-                      ng-required="main.profile.userType=='stateUser'"
-                      data-ng-options="state.name for state in main.states">
-                <option value="">Select State</option>
-              </select>
-                            <span ng-show="main.regform.stateF.$invalid">
-                                <span class="help-block" ng-show="main.regform.stateF.$error.required">Region is required</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="email2"
+                      tf-label="Email Address"
+                      tf-help="Confirm your email address."
+                      tf-form="main.regform"
+                      tf-required="true">
+                  <tx-text-input
+                          tf-type="email"
+                          tf-placeholder="type your email address here AGAIN"
+                          tf-model="main.profile.email2"/>
+              </tx-form-field>
 
-            <div class="well well-sm form-group"
-                 ng-show="main.profile.userType=='stateUser'">
-              <label for="orgF" class="control-label">Organization</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <input id="orgF" name="orgF" type="text" placeholder="Search for organization"
-                     ng-model="main.profile.organization"
-                     typeahead="org.name for org in main.organizations | filter:$viewValue | limitTo:5"
-                     class="form-control"
-                     ng-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
-                     ng-disabled="main.profile.isCustomOrg">
-                            <span ng-show="main.regform.stateF.$invalid">
-                                <span class="help-block" ng-show="main.regform.orgF.$error.required">Organization is required</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="stateF"
+                      tf-label="State"
+                      tf-help="Select Your State"
+                      tf-form="main.regform"
+                      tf-required="true"
+                      ng-show="main.profile.userType=='stateUser'">
+                  <select id="stateF" class="form-control"
+                          ng-model="main.profile.state"
+                          ng-required="main.profile.userType=='stateUser'"
+                          ng-options="state.name for state in main.states">
+                      <option value="">Select State</option>
+                  </select>
+              </tx-form-field>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.customOrgF.$dirty && main.regform.customOrgF.$invalid), 'well well-sm form-group' : !main.regform.customOrgF.$dirty || !main.regform.customOrgF.$invalid }"
-                 ng-show="main.profile.userType=='stateUser'">
-              <button type="button" class="btn btn-link"
-                      ng-click="main.toggleCustomOrg()">My Organization is not listed above.
-              </button>
-              <input name="customOrgF" id="customOrgF" type="text" placeholder="Custom Organization"
-                     class="form-control"
-                     ng-model="main.profile.customOrg"
-                     ng-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
-                     ng-show="main.profile.isCustomOrg"/>
-                            <span ng-show="main.regform.customOrgF.$dirty && main.regform.customOrgF.$invalid">
-                                <span class="help-block" ng-show="main.regform.customOrgF.$error.required">Organiztion is required</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="orgF"
+                      tf-label="Organization"
+                      tf-help="Search for your organization"
+                      tf-form="main.regform"
+                      tf-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
+                      ng-show="main.profile.userType=='stateUser'">
+                  <input id="orgF" name="orgF" type="text" placeholder="Search for organization"
+                         ng-model="main.profile.organization"
+                         typeahead="org.name for org in main.organizations | filter:$viewValue | limitTo:5"
+                         class="form-control"
+                         ng-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
+                         ng-disabled="main.profile.isCustomOrg">
+              </tx-form-field>
 
+              <tx-form-field
+                      tf-id="customOrgF"
+                      tf-label="Custom Organization"
+                      tf-help="Enter the name of your organization."
+                      tf-form="main.regform"
+                      tf-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
+                      ng-show="main.profile.userType=='stateUser'">
+                  <button type="button" class="btn btn-link"
+                        ng-click="main.toggleCustomOrg()">My Organization is not listed above.
+                  </button>
+                  <input name="customOrgF" id="customOrgF" type="text" placeholder="Custom Organization"
+                         class="form-control"
+                         ng-model="main.profile.customOrg"
+                         ng-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
+                         ng-show="main.profile.isCustomOrg"/>
+              </tx-form-field>
 
-            <div ng-class="{ 'well well-sm form-group has-error' : (main.regform.regionF.$dirty && main.regform.regionF.$invalid), 'well well-sm form-group' : !main.regform.regionF.$dirty || !main.regform.regionF.$invalid }"
-                 ng-show="main.profile.userType=='fedUser'">
-              <label for="regionF" class="control-label">Region</label>
-                            <span class="pull-right"><span class="glyphicon glyphicon-question-sign"
-                                                           tooltip="This is my cool clickable tooltip"
-                                                           tooltip-placement="left"
-                                                           tooltip-trigger="click"></span></span>
-              <select id="regionF" class="form-control"
-                      data-ng-model="main.profile.region"
-                      ng-required="main.profile.userType=='fedUser'"
-                      data-ng-options="fwsRegion.name for fwsRegion in main.fwsRegions">
-                <option value="">Select FWS Region</option>
-              </select>
-                            <span ng-show="main.regform.regionF.$invalid">
-                                <span class="help-block" ng-show="main.regform.regionF.$error.required">Region is required</span>
-                            </span>
-            </div>
+              <tx-form-field
+                      tf-id="regionF"
+                      tf-label="FWS Region"
+                      tf-help="Select your FWS Region"
+                      tf-form="main.regform"
+                      tf-required="main.profile.userType=='fedUser'"
+                      ng-show="main.profile.userType=='fedUser'">
+                  <select id="regionF" name="regionF" class="form-control"
+                          ng-model="main.profile.region"
+                          ng-required="main.profile.userType=='fedUser'"
+                          ng-options="fwsRegion.name for fwsRegion in main.fwsRegions">
+                      <option value="">Select FWS Region</option>
+                      </select>
+              </tx-form-field>
           </form>
 
           <div>

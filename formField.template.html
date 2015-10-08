@@ -1,0 +1,19 @@
+<div ng-class="{ 'well well-sm form-group has-error' : (tfForm[tfId].$dirty && tfForm[tfId].$invalid), 'well well-sm form-group' : !tfForm[tfId].$dirty || !tfForm[tfId].$invalid }">
+    <label for="{{tfId}}" class="control-label">{{tfLabel}}</label>
+    <span class="pull-right">
+        <span>{{tfRequired ? 'Required' : 'Optional'}}</span>
+        <span class="glyphicon glyphicon-question-sign"
+               tooltip="{{tfHelp}}"
+               tooltip-placement="left"
+               tooltip-trigger="click">
+
+        </span>
+    </span>
+    <ng-transclude></ng-transclude>
+    <span ng-show="tfForm[tfId].$dirty && tfForm[tfId].$invalid">
+        <span class="help-block" ng-show="tfForm[tfId].$error.required">{{tfLabel}} is required.</span>
+    </span>
+    <span ng-show="tfForm[tfId].$dirty && tfForm[tfId].$invalid">
+        <span class="help-block" ng-show="tfForm[tfId].$error.email">{{tfLabel}} must be a valid email address.</span>
+    </span>
+</div>
