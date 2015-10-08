@@ -27,3 +27,13 @@ factory( 'registrationSvc', function() {
       }
     };
 });
+
+registrationFormMod.
+factory('registrationSvc', function ($rootScope, $timeout) {
+    return {
+        focusNG: function(name) {
+        $timeout(function () {
+            $rootScope.$broadcast('focusOn', name);
+        });
+    }}
+});

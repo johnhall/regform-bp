@@ -199,14 +199,15 @@
                       tf-label="Organization"
                       tf-help="Search for your organization"
                       tf-form="main.regform"
-                      tf-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
+                      tf-required="main.profile.userType=='stateUser' && !main.profile.isCustomOrg"
                  ng-show="main.profile.userType=='stateUser'">
               <input id="orgF" name="orgF" type="text" placeholder="Search for organization"
                      ng-model="main.profile.organization"
                      typeahead="org.name for org in main.organizations | filter:$viewValue | limitTo:5"
                      class="form-control"
-                     ng-required="main.profile.userType=='stateUser' && !profile.isCustomOrg"
-                     ng-disabled="main.profile.isCustomOrg">
+                     ng-required="main.profile.userType=='stateUser' && !main.profile.isCustomOrg"
+                     ng-disabled="main.profile.isCustomOrg"
+                     focus-on="focusOrgF">
               </tx-form-field>
 
               <tx-form-field
@@ -214,18 +215,21 @@
                       tf-label="Custom Organization"
                       tf-help="Enter the name of your organization."
                       tf-form="main.regform"
-                      tf-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
+                      tf-required="main.profile.userType=='stateUser' && main.profile.isCustomOrg"
                       ng-show="main.profile.userType=='stateUser'">
                   <button type="button" class="btn btn-link" ng-hide="main.profile.isCustomOrg"
                         ng-click="main.toggleCustomOrg()">My Organization is not listed above.
                   </button>
-                            <span class="pull-right" ng-show="main.profile.isCustomOrg"><span class="glyphicon glyphicon-search"></span><button type="button" class="btn btn-link" ng-click="main.toggleCustomOrg()">
-                                Search organizations again</button></span>
+                  <span class="pull-right" ng-show="main.profile.isCustomOrg"><span class="glyphicon glyphicon-search"></span>
+                      <button type="button" class="btn btn-link" ng-click="main.toggleCustomOrg()">
+                    Search organizations again</button>
+                  </span>
                   <input name="customOrgF" id="customOrgF" type="text" placeholder="Custom Organization"
                          class="form-control"
                          ng-model="main.profile.customOrg"
-                         ng-required="main.profile.userType=='stateUser' && profile.isCustomOrg"
-                         ng-show="main.profile.isCustomOrg"/>
+                         ng-required="main.profile.userType=='stateUser' && main.profile.isCustomOrg"
+                         ng-show="main.profile.isCustomOrg"
+                         focus-on="focusCustomOrgF"/>
               </tx-form-field>
 
               <tx-form-field

@@ -119,6 +119,12 @@ registrationFormMod.
     vm.toggleCustomOrg = function() {
             vm.profile.isCustomOrg = !vm.profile.isCustomOrg;
             vm.profile.organization = null;
+            vm.profile.customOrg = null;
+            if (vm.profile.isCustomOrg) {
+                registrationSvc.focusNG("focusCustomOrgF")
+            } else {
+                registrationSvc.focusNG("focusOrgF")
+            }
         };
 
     vm.finish = function() {
