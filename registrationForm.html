@@ -207,7 +207,7 @@
                      class="form-control"
                      ng-required="main.profile.userType=='stateUser' && !main.profile.isCustomOrg"
                      ng-disabled="main.profile.isCustomOrg"
-                     focus-on="focusOrgF">
+                     focus-me="focusOrgF">
               </tx-form-field>
 
               <tx-form-field
@@ -229,7 +229,7 @@
                          ng-model="main.profile.customOrg"
                          ng-required="main.profile.userType=='stateUser' && main.profile.isCustomOrg"
                          ng-show="main.profile.isCustomOrg"
-                         focus-on="focusCustomOrgF"/>
+                         focus-me="focusCustomOrgF"/>
               </tx-form-field>
 
               <tx-form-field

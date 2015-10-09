@@ -49,11 +49,11 @@ directive( 'txTextInput', function() {
 });
 
 tracsFormsMod.
-directive('focusOn', function() {
-    return function(scope, elem, attr) {
-        scope.$on('focusOn', function(e, name) {
-            if(name === attr.focusOn) {
-                elem[0].focus();
+directive('focusMe', function() {
+    return function(scope, element, attribute) {
+        scope.$on('focusMe', function(e, name) {
+            if(name === attribute.focusMe) {
+                element[0].focus();
             }
         });
     };

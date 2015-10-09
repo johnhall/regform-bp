@@ -31,9 +31,9 @@ factory( 'registrationSvc', function() {
 registrationFormMod.
 factory('registrationSvc', function ($rootScope, $timeout) {
     return {
-        focusNG: function(name) {
+        focusIt: function(name) {
         $timeout(function () {
-            $rootScope.$broadcast('focusOn', name);
+            $rootScope.$broadcast('focusMe', name);
         });
     }}
 });

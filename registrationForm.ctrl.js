@@ -121,9 +121,9 @@ registrationFormMod.
             vm.profile.organization = null;
             vm.profile.customOrg = null;
             if (vm.profile.isCustomOrg) {
-                registrationSvc.focusNG("focusCustomOrgF")
+                registrationSvc.focusIt("focusCustomOrgF")
             } else {
-                registrationSvc.focusNG("focusOrgF")
+                registrationSvc.focusIt("focusOrgF")
             }
         };
 
