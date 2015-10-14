@@ -1,14 +1,5 @@
 'use strict';
 
-// Mocked Registration Service
-angular.module('mock.reg.svc', []).
-    factory('MockRegistrationService', function () {
-        var regSvc = {};
-        regSvc.focusIt = jasmine.createSpy('focusIt');
-        return regSvc;
-    });
-
-
 describe('Registration Form Controller', function() {
 
     var scope, ctrl, mockRegSvc;
@@ -25,12 +16,48 @@ describe('Registration Form Controller', function() {
     }));
 
 
+    it('role form should initially be invalid', inject(function() {
+        expect(ctrl.isRoleFormValid()).toBeFalsy();
+    }));
+
     it('should set usertype step', inject(function() {
         ctrl.setStep('usertype');
 
         expect(ctrl.step).toBe('usertype');
         expect(ctrl.showUserTypeWarn).toBe(false);
         expect(ctrl.showProfileWarn).toBe(false);
+    }));
+
+    it('should set profile step', inject(function() {
+        ctrl.isUserTypeFormValid = true;
+        ctrl.setStep('profile');
+
+        expect(ctrl.step).toBe('profile');
+        expect(ctrl.showUserTypeWarn).toBe(false);
+        expect(ctrl.showProfileWarn).toBe(false);
+
+        ctrl.isUserTypeFormValid = false;
+        ctrl.setStep('profile');
+
+        expect(ctrl.step).toBe('profile');
+        expect(ctrl.showUserTypeWarn).toBe(true);
+        expect(ctrl.showProfileWarn).toBe(false);
+    }));
+
+    it('should set roles step', inject(function() {
+        ctrl.isProfileFormValid = true;
+        ctrl.setStep('roles');
+
+        expect(ctrl.step).toBe('roles');
+        expect(ctrl.showUserTypeWarn).toBe(false);
+        expect(ctrl.showProfileWarn).toBe(false);
+
+        ctrl.isProfileFormValid = false;
+        ctrl.setStep('roles');
+
+        expect(ctrl.step).toBe('roles');
+        expect(ctrl.showUserTypeWarn).toBe(false);
+        expect(ctrl.showProfileWarn).toBe(true);
     }));
 
     it('should return user type', inject(function() {

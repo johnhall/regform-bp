@@ -134,31 +134,31 @@ registrationFormMod.
     vm.fwsRegions = [
       {
         "name": "Headquarters",
-        "id": 9,
+        "id": 9
       }, {
         "name": "Region 1",
-        "id": 1,
+        "id": 1
       }, {
         "name": "Region 2",
-        "id": 2,
+        "id": 2
       }, {
         "name": "Region 3",
-        "id": 3,
+        "id": 3
       }, {
         "name": "Region 4",
-        "id": 4,
+        "id": 4
       }, {
         "name": "Region 5",
-        "id": 5,
+        "id": 5
       }, {
         "name": "Region 6",
-        "id": 6,
+        "id": 6
       }, {
          "name": "Region 7",
-         "id": 7,
+         "id": 7
       }, {
          "name": "Region 8",
-         "id": 8,
+         "id": 8
       }
     ];
 
@@ -187,31 +187,31 @@ registrationFormMod.
     vm.organizations = [
           {
             "name": "Colorado Division of Wildlife",
-            "id": 9,
+            "id": 9
           }, {
             "name": "Colorado Fish and Game",
-            "id": 1,
+            "id": 1
           }, {
             "name": "Washington Fish and Game",
-            "id": 2,
+            "id": 2
           }, {
             "name": "California Division of Wildlife",
-            "id": 3,
+            "id": 3
           }, {
             "name": "California Fish and Game",
-            "id": 4,
+            "id": 4
           }, {
             "name": "New York Fish & Game",
-            "id": 5,
+            "id": 5
           }, {
             "name": "New York Division of Environmental Contaminants",
-            "id": 6,
+            "id": 6
           }, {
              "name": "Colorado Division of Environmental Contaminants",
-             "id": 7,
+             "id": 7
           }, {
              "name": "California Division of Environmental Contaminants",
-             "id": 8,
+             "id": 8
           }
         ];
 }]);
