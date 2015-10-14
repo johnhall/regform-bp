@@ -1,14 +1,27 @@
 'use strict';
 
+// Mocked Registration Service
+angular.module('mock.reg.svc', []).
+    factory('MockRegistrationService', function () {
+        var regSvc = {};
+        regSvc.focusIt = jasmine.createSpy('focusIt');
+        return regSvc;
+    });
+
+
 describe('Registration Form Controller', function() {
+
+    var scope, ctrl, mockRegSvc;
 
     //load the registrationForm module before each test
     beforeEach(module('registrationForm'));
 
-    var scope, ctrl;
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(module('mock.reg.svc'));
+
+    beforeEach(inject(function($rootScope, $controller, _MockRegistrationService_) {
         scope = $rootScope.$new();
-        ctrl = $controller('RegistrationFormController', {$scope: scope});
+        mockRegSvc = _MockRegistrationService_;
+        ctrl = $controller('RegistrationFormController', {$scope: scope, registrationSvc: _MockRegistrationService_});
     }));
 
 
@@ -27,9 +40,22 @@ describe('Registration Form Controller', function() {
         expect(userTypeDescription).toBe('Federal User Profile Information');
     }));
 
-    it('should set custom organization', inject(function() {
+    it('should toggle organization type', inject(function() {
+        ctrl.profile.organization = "whatever";
+        ctrl.profile.customOrg = "whatever again";
         ctrl.toggleCustomOrg();
         expect(ctrl.profile.isCustomOrg).toBe(true);
+        expect(ctrl.profile.organization).toBeNull();
+        expect(ctrl.profile.customOrg).toBeNull();
+        expect(mockRegSvc.focusIt).toHaveBeenCalledWith("focusCustomOrgF");
+
+        ctrl.profile.organization = "whatever";
+        ctrl.profile.customOrg = "whatever again";
+        ctrl.toggleCustomOrg();
+        expect(ctrl.profile.isCustomOrg).toBe(false);
+        expect(ctrl.profile.organization).toBeNull();
+        expect(ctrl.profile.customOrg).toBeNull();
+        expect(mockRegSvc.focusIt).toHaveBeenCalledWith("focusOrgF");
     }));
 
 
