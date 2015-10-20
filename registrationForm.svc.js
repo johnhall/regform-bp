@@ -27,14 +27,3 @@ registrationFormMod.
             }
         }
     });
-
-registrationFormMod.
-    factory('registrationSvc', function ($rootScope, $timeout) {
-        return {
-            focusIt: function (name) {
-                $timeout(function () {
-                    $rootScope.$broadcast('focusMe', name);
-                });
-            }
-        }
-    });

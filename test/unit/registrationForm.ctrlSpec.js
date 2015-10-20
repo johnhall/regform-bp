@@ -2,17 +2,17 @@
 
 describe('Registration Form Controller', function() {
 
-    var scope, ctrl, mockRegSvc;
+    var scope, ctrl, commonSvcsMock;
 
     //load the registrationForm module before each test
     beforeEach(module('registrationForm'));
 
-    beforeEach(module('mock.reg.svc'));
+    beforeEach(module('mock.gov.doi.tracs.svcs'));
 
-    beforeEach(inject(function($rootScope, $controller, _MockRegistrationService_) {
+    beforeEach(inject(function($rootScope, $controller, _registrationSvc_, _CommonSvcsMock_) {
         scope = $rootScope.$new();
-        mockRegSvc = _MockRegistrationService_;
-        ctrl = $controller('RegistrationFormController', {$scope: scope, registrationSvc: _MockRegistrationService_});
+        commonSvcsMock = _CommonSvcsMock_;
+        ctrl = $controller('RegistrationFormController', {$scope: scope, registrationSvc: _registrationSvc_, commonSvcs: _CommonSvcsMock_});
     }));
 
 
@@ -74,7 +74,7 @@ describe('Registration Form Controller', function() {
         expect(ctrl.profile.isCustomOrg).toBe(true);
         expect(ctrl.profile.organization).toBeNull();
         expect(ctrl.profile.customOrg).toBeNull();
-        expect(mockRegSvc.focusIt).toHaveBeenCalledWith("focusCustomOrgF");
+        expect(commonSvcsMock.focusIt).toHaveBeenCalledWith("focusCustomOrgF");
 
         ctrl.profile.organization = "whatever";
         ctrl.profile.customOrg = "whatever again";
@@ -82,7 +82,7 @@ describe('Registration Form Controller', function() {
         expect(ctrl.profile.isCustomOrg).toBe(false);
         expect(ctrl.profile.organization).toBeNull();
         expect(ctrl.profile.customOrg).toBeNull();
-        expect(mockRegSvc.focusIt).toHaveBeenCalledWith("focusOrgF");
+        expect(commonSvcsMock.focusIt).toHaveBeenCalledWith("focusOrgF");
     }));
 
 

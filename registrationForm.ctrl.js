@@ -1,8 +1,7 @@
 //set a new module
-var registrationFormMod = angular.module('registrationForm', ['ngAnimate', 'ui.bootstrap', 'gov.doi.tracs.forms']);
+var registrationFormMod = angular.module('registrationForm', ['ngAnimate', 'ui.bootstrap', 'gov.doi.tracs.forms', 'gov.doi.tracs.svcs']);
 
-registrationFormMod.
-    controller("RegistrationFormController", [ '$scope', 'registrationSvc', function($scope,registrationSvc){
+registrationFormMod.controller('RegistrationFormController', ['$scope', 'registrationSvc', 'commonSvcs', function($scope, registrationSvc, commonSvcs) {
 
         //what is 'this' inside a controller? How is it different from $scope?
     var vm = this;
@@ -121,9 +120,9 @@ registrationFormMod.
             vm.profile.organization = null;
             vm.profile.customOrg = null;
             if (vm.profile.isCustomOrg) {
-                registrationSvc.focusIt("focusCustomOrgF")
+                commonSvcs.focusIt("focusCustomOrgF")
             } else {
-                registrationSvc.focusIt("focusOrgF")
+                commonSvcs.focusIt("focusOrgF")
             }
         };
 
