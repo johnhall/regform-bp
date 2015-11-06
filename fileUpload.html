@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File Upload</title>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-ui-uploader/dist/uploader.js"></script>
+    <script src="gov.doi.tracs.forms.js"></script>
+    <script src="fileUpload.ctrl.js"></script>
+
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body ng-app="fileUpload"
+      ng-controller="fileUploadController as main">
+    <div class="container">
+
+        <div class="page-header">
+            <h1>File Upload</h1>
+        </div>
+
+        <form name="main.uploadForm" novalidate>
+
+            <tx-form-field
+                    tf-id="title"
+                    tf-label="Title"
+                    tf-help="The title that you want stored with the file."
+                    tf-form="main.uploadForm"
+                    tf-required="true">
+                <tx-text-input
+                        tf-type="text"
+                        tf-placeholder="type the title here"
+                        tf-model="main.fileMetadata.title"/>
+            </tx-form-field>
+
+            <tx-form-field
+                    tf-id="author"
+                    tf-label="Author"
+                    tf-help="The author of the file that you want stored with the file."
+                    tf-form="main.uploadForm"
+                    tf-required="true">
+                <tx-text-input
+                        tf-type="text"
+                        tf-placeholder="type the author here"
+                        tf-model="main.fileMetadata.author"/>
+            </tx-form-field>
+
+            <tx-form-field
+                    tf-id="caption"
+                    tf-label="Caption"
+                    tf-help="The caption that you want stored with the file."
+                    tf-form="main.uploadForm"
+                    tf-required="true">
+                <tx-text-input
+                        tf-type="text"
+                        tf-placeholder="type the caption here"
+                        tf-model="main.fileMetadata.caption"/>
+            </tx-form-field>
+
+            <tx-form-field
+                    tf-id="fileType"
+                    tf-label="File Type"
+                    tf-help="The type of the file."
+                    tf-form="main.uploadForm"
+                    tf-required="true">
+                <tx-text-input
+                        tf-type="text"
+                        tf-placeholder="enter the file type here"
+                        tf-model="main.fileMetadata.fileType"/>
+            </tx-form-field>
+
+            <div id="uploader">
+                <div class="well">
+                    <div>
+                        <div style="float:right;">
+                            <button ng-click="main.btn_upload()">Upload</button>
+                            <button ng-click="main.btn_clean()">Remove all</button>
+                        </div>
+                        <input type="file" id="fileWidget" multiple required/>
+                    </div>
+                    <div ng-repeat="file in main.files" style="margin-top: 20px;border-bottom-color: antiquewhite;border-bottom-style: double;">
+                        <div>
+                            <span>{{file.name}}</span>
+                            <div style="float:right;">
+                                <span class="pull-right"><span class="glyphicon glyphicon-trash"></span>
+                                  <button type="button" class="btn btn-link" ng-click="main.btn_remove(file)">
+                                      Remove file from list</button>
+                                </span>
+                                <span>{{file.humanSize}}</span>
+                            </div>
+                        </div>
+                        <!--<progress style="width:400px;" value="{{file.loaded}}" max="{{file.size}}"></progress>-->
+                    </div>
+                </div>
+            </div>
+        </form>
+        {{main.fileMetadata}} {{main.files}}
+    </div>
+</body>
+</html>
