@@ -9,7 +9,6 @@ fileUpload.controller('fileUploadController', function($scope, $log, uiUploader)
     vm.fileMetadata = {};
 
     vm.btn_remove = function(file) {
-        $log.info('deleting=' + file);
         uiUploader.removeFile(file);
     };
 
@@ -41,5 +40,16 @@ fileUpload.controller('fileUploadController', function($scope, $log, uiUploader)
         vm.files = uiUploader.getFiles();
         $scope.$apply();
     });
+
+    vm.getFileNames = function () {
+        var msg = 'Files: ';
+        for (var i = 0; i < uiUploader.getFiles().length; i++) {
+            if(i > 0) {
+                msg += ', ';
+            }
+            msg += uiUploader.getFiles()[i].name;
+        }
+        return msg;
+    }
 
 });
