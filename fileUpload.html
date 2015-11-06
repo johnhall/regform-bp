@@ -37,19 +37,19 @@
             <tx-form-field
                     tf-id="author"
                     tf-label="Author"
-                    tf-help="The author of the file that you want stored with the file."
+                    tf-help="The author(s) of the file that you want stored with the file(s)."
                     tf-form="main.uploadForm"
                     tf-required="true">
                 <tx-text-input
                         tf-type="text"
-                        tf-placeholder="type the author here"
+                        tf-placeholder="type the author(s) here"
                         tf-model="main.fileMetadata.author"/>
             </tx-form-field>
 
             <tx-form-field
                     tf-id="caption"
                     tf-label="Caption"
-                    tf-help="The caption that you want stored with the file."
+                    tf-help="The caption that you want stored with the file(s)."
                     tf-form="main.uploadForm"
                     tf-required="true">
                 <tx-text-input
@@ -61,12 +61,12 @@
             <tx-form-field
                     tf-id="fileType"
                     tf-label="File Type"
-                    tf-help="The type of the file."
+                    tf-help="The type(s) of the file."
                     tf-form="main.uploadForm"
                     tf-required="true">
                 <tx-text-input
                         tf-type="text"
-                        tf-placeholder="enter the file type here"
+                        tf-placeholder="enter the file type(s) here"
                         tf-model="main.fileMetadata.fileType"/>
             </tx-form-field>
 
@@ -83,11 +83,11 @@
                         <div>
                             <span>{{file.name}}</span>
                             <div style="float:right;">
-                                <span class="pull-right"><span class="glyphicon glyphicon-trash"></span>
-                                  <button type="button" class="btn btn-link" ng-click="main.btn_remove(file)">
-                                      Remove file from list</button>
-                                </span>
                                 <span>{{file.humanSize}}</span>
+                                <span class="pull-right">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                    <button type="button" class="btn btn-link" ng-click="main.btn_remove(file)">Remove file from list</button>
+                                </span>
                             </div>
                         </div>
                         <!--<progress style="width:400px;" value="{{file.loaded}}" max="{{file.size}}"></progress>-->
