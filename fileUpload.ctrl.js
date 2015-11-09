@@ -9,10 +9,12 @@ fileUpload.controller('fileUploadController', function($scope, $log, uiUploader)
     vm.fileMetadata = {};
 
     vm.btn_remove = function(file) {
+        element.value = null;
         uiUploader.removeFile(file);
     };
 
     vm.btn_clean = function() {
+        element.value = null;
         uiUploader.removeAll();
     };
 
@@ -32,7 +34,7 @@ fileUpload.controller('fileUploadController', function($scope, $log, uiUploader)
     };
 
     vm.files = [];
-    var element = document.getElementById('fileWidget');
+    var element = document.getElementById('fileInput');
 
     element.addEventListener('change', function(e) {
         var files = e.target.files;
