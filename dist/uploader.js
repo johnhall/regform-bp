@@ -3503,6 +3503,7 @@
                     allowed: '@',
                     url: '@',
                     autoUpload: '@',
+                    acceptTypes: '@',
                     sizeLimit: '@',
                     ngModel: '=',
                     name: '@'
@@ -3515,6 +3516,7 @@
                     $scope.options = {
                         url: $scope.url,
                         dropZone: $element,
+                        acceptFileTypes: $scope.acceptTypes,
                         maxFileSize: $scope.sizeLimit,
                         autoUpload: $scope.autoUpload
                     };
