@@ -7,8 +7,42 @@
     "angular": "1.4.5",
     "angular-mocks": "1.4.5",
     "angular-animate": "1.4.5",
-    "angular-ui-uploader": "1.1.2",
     "bootstrap": "~3.1.1",
-    "angular-bootstrap": "0.13.4"
-  }
+    "blueimp-tmpl": ">=2.5.3",
+    "blueimp-canvas-to-blob": ">=2.1.0",
+    "blueimp-gallery": ">=2.14.0",
+    "jquery": ">=2.0",
+    "blueimp-load-image": "latest",
+    "angular-bootstrap": "latest"
+  },
+  "main": [
+    "css/jquery.fileupload.css",
+    "css/jquery.fileupload-ui.css",
+    "css/jquery.fileupload-noscript.css",
+    "css/jquery.fileupload-ui-noscript.css",
+    "js/cors/jquery.postmessage-transport.js",
+    "js/cors/jquery.xdr-transport.js",
+    "js/vendor/jquery.ui.widget.js",
+    "js/jquery.fileupload.js",
+    "js/jquery.fileupload-process.js",
+    "js/jquery.fileupload-validate.js",
+    "js/jquery.fileupload-image.js",
+    "js/jquery.fileupload-audio.js",
+    "js/jquery.fileupload-video.js",
+    "js/jquery.fileupload-ui.js",
+    "js/jquery.fileupload-jquery-ui.js",
+    "js/jquery.fileupload-angular.js",
+    "js/jquery.iframe-transport.js",
+    "js/app.js"
+  ],
+  "ignore": [
+    "/*.*",
+    "/cors",
+    "css/demo-ie8.css",
+    "css/demo.css",
+    "css/style.css",
+    "js/main.js",
+    "server",
+    "test"
+  ]
 }

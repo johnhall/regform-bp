@@ -1,13 +1,14 @@
 /**
  * Created by user on 11/5/15.
  */
-var fileUpload = angular.module('fileUpload', ['ui.uploader', 'ngAnimate', 'ui.bootstrap', 'gov.doi.tracs.forms']);
+var fileUpload = angular.module('fileUpload', ['uploadModule', 'ngAnimate', 'ui.bootstrap', 'gov.doi.tracs.forms']);
 
-fileUpload.controller('fileUploadController', function($scope, $log, uiUploader) {
+fileUpload.controller('fileUploadController', function($scope, $log) {
 
     var vm = this;
     vm.fileMetadata = {};
 
+/*
     vm.btn_remove = function(file) {
         element.value = null;
         uiUploader.removeFile(file);
@@ -53,5 +54,6 @@ fileUpload.controller('fileUploadController', function($scope, $log, uiUploader)
         }
         return msg;
     }
+*/
 
 });
