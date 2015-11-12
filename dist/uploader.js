@@ -2965,7 +2965,7 @@
                 if (options.minFileSize || options.maxFileSize) {
                     fileSize = file.size;
                 }
-                var regExp = new RegExp(options.acceptFileTypes, "i");
+                var regExp = new RegExp(options.acceptFileTypes);
                 if ($.type(options.maxNumberOfFiles) === 'number' &&
                     (settings.getNumberOfFiles() || 0) + data.files.length >
                     options.maxNumberOfFiles) {
