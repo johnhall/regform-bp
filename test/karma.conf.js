@@ -8,6 +8,8 @@ module.exports = function(config){
       'bower_components/angular-animate/angular-animate.js',
       'bower_components/angular-bootstrap/ui-bootstrap.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/jquery/dist/jquery.js',
+      'dist/uploader.js',
       '*.js',
       'test/unit/*.js'
     ],
@@ -15,13 +17,14 @@ module.exports = function(config){
     autoWatch : true,
     logLevel: config.LOG_DEBUG,
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine','qunit'],
 
     browsers : ['Chrome'],
 
     plugins : [
             'karma-chrome-launcher',
-            'karma-jasmine'
+            'karma-jasmine',
+            'karma-qunit'
             ],
 
     junitReporter : {
