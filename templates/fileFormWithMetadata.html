@@ -1,0 +1,59 @@
+<form name="tfForm" novalidate>
+
+    <tx-form-field
+            tf-id="{{tfId}}-title"
+            tf-label="Title"
+            tf-help="The title that you want stored with the file."
+            tf-form="tfForm"
+            tf-required="true">
+        <tx-text-input
+                tf-type="text"
+                tf-placeholder="type the title here"
+                tf-model="tfMetadata.title"/>
+    </tx-form-field>
+
+    <tx-form-field
+            tf-id="{{tfId}}-author"
+            tf-label="Author"
+            tf-help="The author(s) of the file that you want stored with the file(s)."
+            tf-form="tfForm"
+            tf-required="true">
+        <tx-text-input
+                tf-type="text"
+                tf-placeholder="type the author(s) here"
+                tf-model="tfMetadata.author"/>
+    </tx-form-field>
+
+    <tx-form-field
+            tf-id="{{tfId}}-caption"
+            tf-label="Caption"
+            tf-help="The caption that you want stored with the file(s)."
+            tf-form="tfForm"
+            tf-required="true">
+        <tx-text-input
+                tf-type="text"
+                tf-placeholder="type the caption here"
+                tf-model="tfMetadata.caption"/>
+    </tx-form-field>
+
+    <tx-form-field
+            tf-id="{{tfId}}-fileType"
+            tf-label="File Type"
+            tf-help="The type(s) of the file."
+            tf-form="tfForm"
+            tf-required="true">
+        <tx-text-input
+                tf-type="text"
+                tf-placeholder="enter the file type(s) here"
+                tf-model="tfMetadata.fileType"/>
+    </tx-form-field>
+
+    <div class="formContainer" data-ng-app="uploadModule">
+        <ng-upload-form tf-id="{{tfId}}-fileUploader" url="{{tfFileUrl}}" size-limit="{{tfFileSize}}" accept-types="{{tfFileTypes}}"></ng-upload-form>
+        <!--<ng-upload-form url="/files/" size-limit="500000"></ng-upload-form>-->
+    </div>
+
+    {{ctrl.metadata}}
+    {{ctrl.mmodel}}
+
+</form>

@@ -38,6 +38,7 @@
     <script src="dist/uploader.js"></script>
     <!-- The basic File Upload plugin -->
     <script src="gov.doi.tracs.forms.js"></script>
+    <script src="gov.doi.tracs.uploads.js"></script>
     <script src="fileUpload.ctrl.js"></script>
 
 </head>
@@ -100,7 +101,7 @@
             </tx-form-field>
 
             <div class="formContainer" data-ng-app="uploadModule" >
-                <ng-upload-form url="/files/" size-limit="500000" accept-types="^(.*\.(docx?|pdf|jpe?g|png|gif)$)[^.]*$"></ng-upload-form>
+                <ng-upload-form tf-id="files" url="/files/" size-limit="500000" accept-types="^(.*\.(docx?|pdf|jpe?g|png|gif)$)[^.]*$"></ng-upload-form>
                 <!--<ng-upload-form url="/files/" size-limit="500000"></ng-upload-form>-->
             </div>
 

@@ -14,13 +14,13 @@ directive( 'txFormField', function() {
           tfForm: '=',
           tfRequired: '='
         },
-        templateUrl: 'formField.template.html',
+        templateUrl: './templates/formField.template.html',
         transclude: true,
         controller: ['$scope', function($scope) {
 
               this.getId = function() {
                 return $scope.tfId;
-              }
+              };
 
               this.getType = function() {
                 return $scope.tfType;
@@ -39,7 +39,7 @@ directive( 'txTextInput', function() {
             tfModel: '='
         },
         require: '^txFormField',
-        templateUrl: 'textInput.template.html',
+        templateUrl: './templates/textInput.template.html',
         link: function(scope, element, attrs, ctrl) {
 
               scope.tfId = ctrl.getId();

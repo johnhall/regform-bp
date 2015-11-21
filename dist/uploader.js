@@ -3500,6 +3500,7 @@
                 restrict: 'E',
                 templateUrl: './templates/fileform.html',
                 scope: {
+                    tfId: '@',
                     allowed: '@',
                     url: '@',
                     autoUpload: '@',
