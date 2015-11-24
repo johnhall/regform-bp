@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <![endif]-->
     <meta charset="UTF-8">
-    <title>File Upload</title>
+    <title>File Upload Only</title>
 
     <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -39,75 +39,20 @@
     <!-- The basic File Upload plugin -->
     <script src="gov.doi.tracs.forms.js"></script>
     <script src="gov.doi.tracs.uploads.js"></script>
-    <script src="fileUpload.ctrl.js"></script>
 
 </head>
-<body ng-app="fileUpload" ng-controller="fileUploadController as main">
+<body>
 
     <div class="container">
 
         <div class="page-header">
-            <h1>File Upload</h1>
+            <h1>File Upload widget only</h1>
         </div>
 
-        <form name="main.uploadForm" novalidate>
-
-            <tx-form-field
-                    tf-id="title"
-                    tf-label="Title"
-                    tf-help="The title that you want stored with the file."
-                    tf-form="main.uploadForm"
-                    tf-required="true">
-                <tx-text-input
-                        tf-type="text"
-                        tf-placeholder="type the title here"
-                        tf-model="main.fileMetadata.title"/>
-            </tx-form-field>
-
-            <tx-form-field
-                    tf-id="author"
-                    tf-label="Author"
-                    tf-help="The author(s) of the file that you want stored with the file(s)."
-                    tf-form="main.uploadForm"
-                    tf-required="true">
-                <tx-text-input
-                        tf-type="text"
-                        tf-placeholder="type the author(s) here"
-                        tf-model="main.fileMetadata.author"/>
-            </tx-form-field>
-
-            <tx-form-field
-                    tf-id="caption"
-                    tf-label="Caption"
-                    tf-help="The caption that you want stored with the file(s)."
-                    tf-form="main.uploadForm"
-                    tf-required="true">
-                <tx-text-input
-                        tf-type="text"
-                        tf-placeholder="type the caption here"
-                        tf-model="main.fileMetadata.caption"/>
-            </tx-form-field>
-
-            <tx-form-field
-                    tf-id="fileType"
-                    tf-label="File Type"
-                    tf-help="The type(s) of the file."
-                    tf-form="main.uploadForm"
-                    tf-required="true">
-                <tx-text-input
-                        tf-type="text"
-                        tf-placeholder="enter the file type(s) here"
-                        tf-model="main.fileMetadata.fileType"/>
-            </tx-form-field>
-
-            <div class="formContainer" data-ng-app="uploadModule" >
-                <ng-upload-form tf-id="files" url="/files/" size-limit="500000" accept-types="^(.*\.(docx?|pdf|jpe?g|png|gif)$)[^.]*$"></ng-upload-form>
-                <!--<ng-upload-form url="/files/" size-limit="500000"></ng-upload-form>-->
-            </div>
-
-        </form>
-
-        {{main.fileMetadata}} <!--{{main.getFileNames()}}-->
+        <div class="formContainer" data-ng-app="uploadModule" >
+            <ng-upload-form tf-id="files" url="/files/" size-limit="500000" accept-types="^(.*\.(docx?|pdf|jpe?g|png|gif)$)[^.]*$"></ng-upload-form>
+            <!--<ng-upload-form url="/files/" size-limit="500000"></ng-upload-form>-->
+        </div>
 
     </div>
 
