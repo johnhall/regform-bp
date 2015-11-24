@@ -50,12 +50,11 @@
             <h1>File Upload</h1>
         </div>
 
-        <div class="formContainer" ng-app="gov.doi.tracs.uploads" ng-controller="fileUploadMetadataController as main">
+        <div class="formContainer" ng-app="gov.doi.tracs.uploads">
             <file-upload-with-metadata tf-id="fUploader"
                                        tf-file-url="/files/"
                                        tf-file-size="500000"
-                                       tf-file-types="^(.*\.(docx?|pdf|jpe?g|png|gif)$)[^.]*$"
-                                       tf-form="main.fileForm"></file-upload-with-metadata>
+                                       tf-file-types="^(.*\.(docx?|pdf|jpe?g|png|gif)$)[^.]*$"></file-upload-with-metadata>
         </div>
 
     </div>
