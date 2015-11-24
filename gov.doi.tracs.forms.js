@@ -16,15 +16,15 @@ directive('txFormField', function () {
         },
         templateUrl: './templates/formField.template.html',
         transclude: true,
-        controller: ['$scope', function ($scope) {
+        controller: ['$scope', function (scope) {
 
             this.getId = function () {
-                return $scope.tfId;
+                return scope.tfId;
             };
 
             this.getType = function () {
-                return $scope.tfType;
-            }
+                return scope.tfType;
+            };
         }]
     }
 });
