@@ -10,16 +10,16 @@
 
         <div class="col-lg-7">
             <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+                <span id="{{tfId}}-addFiles" class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                     <i class="glyphicon glyphicon-plus"></i>
                     <span>Add files...</span>
-                    <input id="{{tfId}}" type="file" name="{{tfId}}" multiple ng-disabled="disabled">
+                    <input id="{{tfId}}-fileInput" type="file" name="{{tfId}}-fileInput" multiple ng-disabled="disabled">
                 </span>
-            <button type="button" class="btn btn-primary start" data-ng-click="submit()">
+            <button id="{{tfId}}-startUpload" type="button" class="btn btn-primary start" data-ng-click="submit()">
                 <i class="glyphicon glyphicon-upload"></i>
                 <span>Start upload</span>
             </button>
-            <button type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
+            <button id="{{tfId}}-cancelUpload" type="button" class="btn btn-warning cancel" data-ng-click="cancel()">
                 <i class="glyphicon glyphicon-ban-circle"></i>
                 <span>Cancel upload</span>
             </button>
