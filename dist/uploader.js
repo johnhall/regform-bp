@@ -3507,6 +3507,7 @@
                     acceptTypes: '@',
                     sizeLimit: '@',
                     ngModel: '=',
+                    tfForm: '=',
                     name: '@'
                 },
                 controller: ['$scope', '$element', 'fileUpload', function ($scope, $element, fileUpload) {
